@@ -78,6 +78,10 @@ export class TodoListComponent implements OnInit {
     return this.todos.filter(todo => todo.completed).length > 0;
   };
 
+  haveActive(): boolean {
+    return this.todos.filter(todo => todo.completed).length >= 1;
+  };
+
   clearCompleted(): void {
     this.todos = this.todos.filter(todo => !todo.completed);
   };
