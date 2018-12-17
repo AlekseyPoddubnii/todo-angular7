@@ -29,6 +29,7 @@ button {
 .to-do-ul {
   margin: 0;
   text-align: right;
+
   li {
     margin: 0 5px;
     display: inline-block;
@@ -39,10 +40,12 @@ button {
   color: #fff;
   transition: 1s;
   cursor: pointer;
+
   &:hover {
     color: #000;
   }
 }
+
 /* Todo list and input */
 
 .to-do__input {

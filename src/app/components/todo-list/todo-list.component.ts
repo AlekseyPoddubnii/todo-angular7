@@ -82,6 +82,12 @@ export class TodoListComponent implements OnInit {
     return this.todos.filter(todo => todo.completed).length >= 1;
   };
 
+  clearRender() {
+    if (this.todos.filter(todo => !todo.completed).length === 0) {
+      return 'Cool, you finish all task. Go to sleep :)'
+    }
+  }
+
   clearCompleted(): void {
     this.todos = this.todos.filter(todo => !todo.completed);
   };
