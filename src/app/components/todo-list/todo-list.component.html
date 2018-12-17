@@ -1,0 +1,50 @@
+<section class="to-do">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <input class="to-do__input" type="text" placeholder="What i need to do.." [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
+        <div class="to-do-item" *ngFor="let todo of todosFiltered()">
+          <input class="to-do-item__checkbox" type="checkbox" [(ngModel)]="todo.completed">
+          <div class="to-do-item__desc" *ngIf="!todo.editing; else editingTodo" (dblclick)="editTodo(todo)" [ngClass]="{'completed': todo.completed}">
+            {{ todo.title }}
+          </div>
+          <ng-template #editingTodo>
+            <input class="to-do-item__edit" type="text" [(ngModel)]="todo.title" (keyup.enter)="editDone(todo)">
+          </ng-template>
+          <button (click)="deleteTodo(todo.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="to-do__counter">
+  {{ counter() }}
+</div>
+
+<div class="to-do__completed" *ngIf="haveCompleted()">
+  You can remove completed tasks
+</div>
+
+<button class="to-do__clear" (click)="clearCompleted()" *ngIf="haveCompleted()">
+  Clear completed
+</button>
+
+
+<div class="to-do-pagination">
+  <button class="to-do-pagination__btn" [ngClass]="{'active': filter === 'all'}" (click)="filter='all'">
+    All
+  </button>
+  <button class="to-do-pagination__btn" [ngClass]="{'active': filter === 'completed'}" (click)="filter='completed'">
+    Completed
+  </button>
+  <button class="to-do-pagination__btn" [ngClass]="{'active': filter === 'active'}" (click)="filter='active'">
+    Active
+  </button>
+</div>
+<style>
+  .completed {
+    background-color: red;
+  }
+
+</style>
